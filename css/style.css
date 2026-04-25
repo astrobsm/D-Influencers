@@ -29,21 +29,29 @@
   --green-muted:    rgba(45, 198, 83, 0.15);
   --green-glow:     rgba(45, 198, 83, 0.20);
 
-  /* Background Stack */
-  --bg-base:        #080808;
-  --bg-primary:     #0F0F0F;
-  --bg-secondary:   #161616;
-  --bg-card:        #1C1C1C;
-  --bg-card-2:      #222222;
-  --bg-elevated:    #2A2A2A;
-  --bg-input:       #1A1A1A;
-  --bg-overlay:     rgba(0,0,0,0.82);
+  /* Sky Blue Palette (primary accent) */
+  --sky-bright:     #87CEEB;
+  --sky-primary:    #4FB3E8;
+  --sky-light:      #B3E0F2;
+  --sky-deep:       #1E88E5;
+  --sky-glow:       rgba(135,206,235,0.25);
+  --sky-border:     rgba(135,206,235,0.35);
+
+  /* Background Stack — Navy */
+  --bg-base:        #050B1A;
+  --bg-primary:     #0A1A33;
+  --bg-secondary:   #102545;
+  --bg-card:        #163059;
+  --bg-card-2:      #1B3A6F;
+  --bg-elevated:    #234680;
+  --bg-input:       #0E2042;
+  --bg-overlay:     rgba(5,11,26,0.85);
 
   /* Border */
-  --border-base:    rgba(255,255,255,0.06);
-  --border-light:   rgba(255,255,255,0.10);
-  --border-gold:    rgba(245,197,24,0.30);
-  --border-input:   rgba(255,255,255,0.12);
+  --border-base:    rgba(135,206,235,0.10);
+  --border-light:   rgba(135,206,235,0.18);
+  --border-gold:    rgba(135,206,235,0.35);
+  --border-input:   rgba(135,206,235,0.22);
 
   /* Text */
   --text-white:     #FFFFFF;
@@ -115,8 +123,8 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--gold-muted); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+::-webkit-scrollbar-thumb { background: var(--sky-primary); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sky-deep); }
 
 a { text-decoration: none; color: inherit; }
 img { max-width: 100%; display: block; }
@@ -158,8 +166,8 @@ ul { list-style: none; }
   top: 0; left: 0;
   width: var(--sidebar-w);
   height: 100vh;
-  background: linear-gradient(180deg, #111111 0%, #0A0A0A 100%);
-  border-right: 1px solid var(--border-gold);
+  background: linear-gradient(180deg, #0A1A33 0%, #050B1A 100%);
+  border-right: 1px solid var(--sky-border);
   display: flex;
   flex-direction: column;
   z-index: 1000;
@@ -551,7 +559,7 @@ ul { list-style: none; }
    10. WELCOME BANNER
    ============================================================ */
 .welcome-banner {
-  background: linear-gradient(135deg, #1A1400 0%, #1C1A00 30%, #0F1A0F 70%, #100A00 100%);
+  background: linear-gradient(135deg, #0A1A33 0%, #102545 30%, #163059 70%, #050B1A 100%);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
   padding: var(--space-6) var(--space-8);

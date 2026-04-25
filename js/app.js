@@ -3,6 +3,41 @@
   const STORAGE_KEY = "dinfluencers-hub-data-v1";
   const SETTINGS_KEY = "dinfluencers-hub-settings-v1";
 
+  // Safe storage shim — falls back to in-memory map when localStorage is
+  // blocked (Edge Tracking Prevention, private mode, disabled cookies, etc).
+  const safeStorage = (() => {
+    const memory = new Map();
+    let useLocal = false;
+    try {
+      const probe = "__ds_probe__";
+      window.localStorage.setItem(probe, "1");
+      window.localStorage.removeItem(probe);
+      useLocal = true;
+    } catch {
+      useLocal = false;
+    }
+    return {
+      getItem(key) {
+        if (useLocal) {
+          try { return window.localStorage.getItem(key); } catch { /* fallthrough */ }
+        }
+        return memory.has(key) ? memory.get(key) : null;
+      },
+      setItem(key, value) {
+        if (useLocal) {
+          try { window.localStorage.setItem(key, value); return; } catch { /* fallthrough */ }
+        }
+        memory.set(key, String(value));
+      },
+      removeItem(key) {
+        if (useLocal) {
+          try { window.localStorage.removeItem(key); } catch { /* ignore */ }
+        }
+        memory.delete(key);
+      },
+    };
+  })();
+
   const nowIsoDate = () => new Date().toISOString().slice(0, 10);
   const uid = () => `${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
 
@@ -121,7 +156,7 @@
 
   function loadState() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = safeStorage.getItem(STORAGE_KEY);
       if (!raw) return structuredClone(defaultState);
       return { ...structuredClone(defaultState), ...JSON.parse(raw) };
     } catch {
@@ -131,7 +166,7 @@
 
   function loadSettings() {
     try {
-      const raw = localStorage.getItem(SETTINGS_KEY);
+      const raw = safeStorage.getItem(SETTINGS_KEY);
       if (!raw) return structuredClone(defaultSettings);
       return { ...structuredClone(defaultSettings), ...JSON.parse(raw) };
     } catch {
@@ -140,11 +175,11 @@
   }
 
   function saveState() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    safeStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }
 
   function saveSettings() {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+    safeStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
   }
 
   function escapeHtml(text) {
@@ -1383,8 +1418,8 @@
       confirmReset() {
         const ok = window.confirm("This will erase all stored app data. Continue?");
         if (!ok) return;
-        localStorage.removeItem(STORAGE_KEY);
-        localStorage.removeItem(SETTINGS_KEY);
+        safeStorage.removeItem(STORAGE_KEY);
+        safeStorage.removeItem(SETTINGS_KEY);
         window.location.reload();
       },
     },

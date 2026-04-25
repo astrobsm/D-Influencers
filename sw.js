@@ -3,8 +3,8 @@
    Offline-first PWA with background sync & cache strategies
    ============================================================ */
 
-const CACHE_NAME = 'dinfluencers-v3';
-const API_CACHE = 'dinfluencers-api-v3';
+const CACHE_NAME = 'dinfluencers-v5';
+const API_CACHE = 'dinfluencers-api-v5';
 const OFFLINE_URL = '/index.html';
 
 const STATIC_ASSETS = [
@@ -13,7 +13,12 @@ const STATIC_ASSETS = [
   '/css/style.css',
   '/js/app.js',
   '/manifest.json',
-  '/assets/logo.jpeg',
+  '/assets/logo.png',
+  '/assets/favicon-32.png',
+  '/assets/icons/icon-192.png',
+  '/assets/icons/icon-512.png',
+  '/assets/icons/maskable-192.png',
+  '/assets/icons/maskable-512.png',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
   'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap',
   'https://cdn.jsdelivr.net/npm/chart.js'
@@ -117,8 +122,8 @@ self.addEventListener('push', (event) => {
   event.waitUntil(
     self.registration.showNotification(data.title || "D'Influencers Mentorship Hub", {
       body: data.body,
-      icon: '/assets/logo.jpeg',
-      badge: '/assets/logo.jpeg',
+      icon: '/assets/icons/icon-192.png',
+      badge: '/assets/icons/icon-192.png',
       vibrate: [200, 100, 200],
       tag: 'dinfluencers-notif',
       data: { url: data.url || '/' }

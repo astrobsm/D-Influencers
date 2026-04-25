@@ -1185,11 +1185,50 @@
   }
 
   function initPwaSupport() {
-    if (!("serviceWorker" in navigator)) return;
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js").catch(() => {
-        showToast("Service worker registration failed", "error");
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {
+          showToast("Service worker registration failed", "error");
+        });
       });
+    }
+
+    // Install prompt handling
+    let deferredPrompt = null;
+    const installBtn = document.getElementById("installAppBtn");
+
+    const showInstallButton = (show) => {
+      if (!installBtn) return;
+      installBtn.style.display = show ? "" : "none";
+    };
+    showInstallButton(false);
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      showInstallButton(true);
+      showToast("Install D'Influencers as an app from the menu", "info");
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener("click", async () => {
+        if (!deferredPrompt) {
+          showToast("Use your browser menu \u2192 Install app", "info");
+          return;
+        }
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        if (choice.outcome === "accepted") {
+          showToast("Installing\u2026", "success");
+        }
+        deferredPrompt = null;
+        showInstallButton(false);
+      });
+    }
+
+    window.addEventListener("appinstalled", () => {
+      showInstallButton(false);
+      showToast("App installed", "success");
     });
 
     const updateConnectivity = () => {

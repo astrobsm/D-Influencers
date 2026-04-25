@@ -1,6 +1,4 @@
-INSERT INTO users (name, phone, email, rank)
-VALUES ('Demo Leader', '+2340000000000', 'leader@dinfluencers.local', 'leader')
-ON CONFLICT (email) DO NOTHING;
+-- Skipped users seed (table pre-exists in this Supabase project with different schema)
 
 INSERT INTO team_members (name, phone, level, active, notes)
 VALUES

@@ -1,0 +1,19 @@
+{
+  "name": "D'Influencers Mentorship Hub",
+  "short_name": "D'Influencers",
+  "description": "Network Marketing Technical Operating System — Inspire. Empower. Elevate.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A0A0A",
+  "theme_color": "#F5C518",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    { "src": "assets/logo.jpeg", "sizes": "192x192", "type": "image/jpeg", "purpose": "any maskable" },
+    { "src": "assets/logo.jpeg", "sizes": "512x512", "type": "image/jpeg", "purpose": "any maskable" }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

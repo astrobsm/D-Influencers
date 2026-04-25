@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="D'Influencers Mentorship Hub - Network Marketing Technical Operating System" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="D'Influencers" />
+  <title>D'Influencers Mentorship Hub — Operating System</title>
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpeg" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="assets/logo.jpeg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="offline-banner" id="offlineBanner">
+    <i class="fa fa-wifi"></i> You are offline. Changes are stored and will sync when connection returns.
+  </div>
+
+  <div class="sync-banner" id="syncBanner">
+    <i class="fa fa-rotate"></i> Syncing updates...
+  </div>
+
+  <!-- FIXED WATERMARK -->
+  <div class="watermark-bg" aria-hidden="true">
+    <img src="assets/logo.jpeg" alt="" />
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/logo.jpeg" alt="D'Influencers Logo" class="sidebar-logo" />
+      <div class="sidebar-brand">
+        <span class="brand-name">D'Influencers</span>
+        <span class="brand-sub">Mentorship Hub</span>
+      </div>
+      <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle sidebar" aria-label="Toggle sidebar"><i class="fa fa-bars"></i></button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <span class="nav-group-label">OVERVIEW</span>
+        <a href="#" class="nav-item active" data-page="dashboard">
+          <i class="fa fa-gauge-high"></i><span>Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" data-page="workflow">
+          <i class="fa fa-calendar-days"></i><span>Daily Workflow</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">PIPELINE</span>
+        <a href="#" class="nav-item" data-page="prospecting">
+          <i class="fa fa-users-line"></i><span>Prospecting</span>
+          <span class="nav-badge" id="badge-leads">0</span>
+        </a>
+        <a href="#" class="nav-item" data-page="appointments">
+          <i class="fa fa-calendar-check"></i><span>Appointments</span>
+          <span class="nav-badge" id="badge-appts">0</span>
+        </a>
+        <a href="#" class="nav-item" data-page="presentations">
+          <i class="fa fa-presentation-screen"></i><span>Presentations</span>
+        </a>
+        <a href="#" class="nav-item" data-page="closing">
+          <i class="fa fa-handshake"></i><span>Closing & Sign-Up</span>
+        </a>
+        <a href="#" class="nav-item" data-page="followup">
+          <i class="fa fa-rotate"></i><span>Follow-Up</span>
+          <span class="nav-badge urgent" id="badge-followup">0</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">MEMBERS</span>
+        <a href="#" class="nav-item" data-page="onboarding">
+          <i class="fa fa-user-plus"></i><span>Onboarding</span>
+        </a>
+        <a href="#" class="nav-item" data-page="team">
+          <i class="fa fa-people-group"></i><span>Team Members</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">ANALYTICS</span>
+        <a href="#" class="nav-item" data-page="kpi">
+          <i class="fa fa-chart-line"></i><span>KPI & Performance</span>
+        </a>
+        <a href="#" class="nav-item" data-page="accountability">
+          <i class="fa fa-trophy"></i><span>Accountability</span>
+        </a>
+      </div>
+      <div class="nav-group">
+        <span class="nav-group-label">SYSTEM</span>
+        <a href="#" class="nav-item" data-page="tools">
+          <i class="fa fa-toolbox"></i><span>Tools & Resources</span>
+        </a>
+        <a href="#" class="nav-item" data-page="settings">
+          <i class="fa fa-gear"></i><span>Settings</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="tagline">Inspire. Empower. Elevate.</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="mainContent">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-btn" id="menuBtn" title="Open navigation menu" aria-label="Open navigation menu"><i class="fa fa-bars"></i></button>
+        <div class="page-title-area">
+          <h1 class="page-title" id="pageTitle">Dashboard</h1>
+          <p class="page-date" id="pageDate"></p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <i class="fa fa-search"></i>
+          <input type="text" placeholder="Search leads, members..." id="globalSearch" />
+        </div>
+        <button class="icon-btn" id="notifBtn" title="Notifications">
+          <i class="fa fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="user-avatar" title="Admin">
+          <img src="assets/logo.jpeg" alt="Admin" />
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== PAGE: DASHBOARD ==================== -->
+    <section class="page active" id="page-dashboard">
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h2>Welcome back to <span class="gold-text">D'Influencers Mentorship Hub</span></h2>
+          <p>Your network is your net worth. Let's build it today. <em>Inspire. Empower. Elevate.</em></p>
+        </div>
+        <img src="assets/logo.jpeg" alt="Logo" class="welcome-logo" />
+      </div>
+
+      <!-- KPI CARDS -->
+      <div class="cards-grid">
+        <div class="kpi-card gold">
+          <div class="kpi-icon"><i class="fa fa-users"></i></div>
+          <div class="kpi-info">
+            <span class="kpi-label">Total Leads</span>
+            <span class="kpi-value" id="kpi-leads">0</span>
+            <span class="kpi-delta positive"><i class="fa fa-arrow-up"></i> Live count</span>
+          </div>
+        </div>
+        <div class="kpi-card blue">
+          <div class="kpi-icon"><i class="fa fa-calendar-check"></i></div>
+          <div class="kpi-info">
+            <span class="kpi-label">Appointments</span>
+            <span class="kpi-value" id="kpi-appts">0</span>
+            <span class="kpi-delta positive"><i class="fa fa-arrow-up"></i> This week</span>
+          </div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-icon"><i class="fa fa-user-check"></i></div>
+          <div class="kpi-info">
+            <span class="kpi-label">New Sign-Ups</span>
+            <span class="kpi-value" id="kpi-signups">0</span>
+            <span class="kpi-delta positive"><i class="fa fa-arrow-up"></i> This month</span>
+          </div>
+        </div>
+        <div class="kpi-card purple">
+          <div class="kpi-icon"><i class="fa fa-percent"></i></div>
+          <div class="kpi-info">
+            <span class="kpi-label">Conversion Rate</span>
+            <span class="kpi-value" id="kpi-rate">0%</span>
+            <span class="kpi-delta neutral"><i class="fa fa-minus"></i> Overall</span>
+          </div>
+        </div>
+        <div class="kpi-card orange">
+          <div class="kpi-icon"><i class="fa fa-rotate"></i></div>
+          <div class="kpi-info">
+            <span class="kpi-label">Follow-Ups Due</span>
+            <span class="kpi-value" id="kpi-followups">0</span>
+            <span class="kpi-delta urgent"><i class="fa fa-clock"></i> Pending</span>
+          </div>
+        </div>
+        <div class="kpi-card teal">
+          <div class="kpi-icon"><i class="fa fa-people-group"></i></div>
+          <div class="kpi-info">
+            <span class="kpi-label">Team Members</span>
+            <span class="kpi-value" id="kpi-team">0</span>
+            <span class="kpi-delta positive"><i class="fa fa-arrow-up"></i> Active</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Performance Chart -->
+        <div class="glass-card chart-card">
+          <div class="card-header">
+            <h3><i class="fa fa-chart-bar"></i> Weekly Performance</h3>
+            <div class="card-actions">
+              <button class="chip active" onclick="App.charts.switchWeekly('week')">Week</button>
+              <button class="chip" onclick="App.charts.switchWeekly('month')">Month</button>
+            </div>
+          </div>
+          <canvas id="weeklyChart" height="200"></canvas>
+        </div>
+
+        <!-- Pipeline Funnel -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h3><i class="fa fa-filter"></i> Sales Funnel</h3>
+          </div>
+          <div class="funnel-container" id="funnelDisplay"></div>
+        </div>
+
+        <!-- Daily Workflow -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h3><i class="fa fa-clock"></i> Today's Workflow</h3>
+            <span class="status-badge active">Live</span>
+          </div>
+          <div class="workflow-timeline">
+            <div class="timeline-item morning" id="wf-morning">
+              <div class="timeline-icon"><i class="fa fa-sun"></i></div>
+              <div class="timeline-body">
+                <strong>Morning</strong>
+                <p>Prospecting &amp; Outreach</p>
+              </div>
+              <span class="timeline-time">6AM–12PM</span>
+            </div>
+            <div class="timeline-item afternoon" id="wf-afternoon">
+              <div class="timeline-icon"><i class="fa fa-cloud-sun"></i></div>
+              <div class="timeline-body">
+                <strong>Afternoon</strong>
+                <p>Appointments &amp; Presentations</p>
+              </div>
+              <span class="timeline-time">12PM–5PM</span>
+            </div>
+            <div class="timeline-item evening" id="wf-evening">
+              <div class="timeline-icon"><i class="fa fa-moon"></i></div>
+              <div class="timeline-body">
+                <strong>Evening</strong>
+                <p>Follow-ups &amp; Onboarding</p>
+              </div>
+              <span class="timeline-time">5PM–9PM</span>
+            </div>
+            <div class="timeline-item night" id="wf-night">
+              <div class="timeline-icon"><i class="fa fa-star"></i></div>
+              <div class="timeline-body">
+                <strong>Night</strong>
+                <p>KPI Update &amp; Plan Next Day</p>
+              </div>
+              <span class="timeline-time">9PM–11PM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h3><i class="fa fa-bolt"></i> Recent Activity</h3>
+          </div>
+          <div class="activity-feed" id="activityFeed">
+            <div class="empty-state"><i class="fa fa-inbox"></i><p>No activity yet. Start by adding a lead!</p></div>
+          </div>
+        </div>
+
+        <!-- Lead Distribution -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h3><i class="fa fa-chart-pie"></i> Lead Distribution</h3>
+          </div>
+          <canvas id="leadPieChart" height="220"></canvas>
+        </div>
+
+        <!-- Top Performers -->
+        <div class="glass-card">
+          <div class="card-header">
+            <h3><i class="fa fa-trophy"></i> Top Performers</h3>
+          </div>
+          <div class="leaderboard-mini" id="dashLeaderboard">
+            <div class="empty-state"><i class="fa fa-users"></i><p>Add team members to see rankings</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: DAILY WORKFLOW ==================== -->
+    <section class="page" id="page-workflow">
+      <div class="section-header">
+        <h2>Daily Workflow Structure</h2>
+        <p>Your structured daily action plan for maximum productivity</p>
+      </div>
+      <div class="workflow-cards">
+        <div class="workflow-block morning-block">
+          <div class="wf-block-icon"><i class="fa fa-sun"></i></div>
+          <div class="wf-block-time">6:00 AM – 12:00 PM</div>
+          <h3>Morning Session</h3>
+          <h4>Prospecting &amp; Outreach</h4>
+          <ul class="wf-checklist" id="wf-morning-list">
+            <li><label><input type="checkbox" data-wf="m1" /> Review prospect list (20+ contacts)</label></li>
+            <li><label><input type="checkbox" data-wf="m2" /> Send connection requests on social media</label></li>
+            <li><label><input type="checkbox" data-wf="m3" /> Follow up on unanswered messages</label></li>
+            <li><label><input type="checkbox" data-wf="m4" /> Update lead status in CRM</label></li>
+            <li><label><input type="checkbox" data-wf="m5" /> Set appointments for afternoon</label></li>
+          </ul>
+          <div class="wf-progress-bar"><div class="wf-progress" id="prog-morning"></div></div>
+        </div>
+        <div class="workflow-block afternoon-block">
+          <div class="wf-block-icon"><i class="fa fa-cloud-sun"></i></div>
+          <div class="wf-block-time">12:00 PM – 5:00 PM</div>
+          <h3>Afternoon Session</h3>
+          <h4>Appointments &amp; Presentations</h4>
+          <ul class="wf-checklist" id="wf-afternoon-list">
+            <li><label><input type="checkbox" data-wf="a1" /> Confirm all afternoon appointments</label></li>
+            <li><label><input type="checkbox" data-wf="a2" /> Conduct scheduled presentations</label></li>
+            <li><label><input type="checkbox" data-wf="a3" /> Record presentation attendance</label></li>
+            <li><label><input type="checkbox" data-wf="a4" /> Rate post-presentation interest</label></li>
+            <li><label><input type="checkbox" data-wf="a5" /> Collect objections for log</label></li>
+          </ul>
+          <div class="wf-progress-bar"><div class="wf-progress" id="prog-afternoon"></div></div>
+        </div>
+        <div class="workflow-block evening-block">
+          <div class="wf-block-icon"><i class="fa fa-moon"></i></div>
+          <div class="wf-block-time">5:00 PM – 9:00 PM</div>
+          <h3>Evening Session</h3>
+          <h4>Follow-ups &amp; Onboarding</h4>
+          <ul class="wf-checklist" id="wf-evening-list">
+            <li><label><input type="checkbox" data-wf="e1" /> 48-hour rule: Follow up all presentations</label></li>
+            <li><label><input type="checkbox" data-wf="e2" /> Send lead nurturing messages</label></li>
+            <li><label><input type="checkbox" data-wf="e3" /> Onboard new sign-ups (welcome call)</label></li>
+            <li><label><input type="checkbox" data-wf="e4" /> Distribute starter guides to new members</label></li>
+            <li><label><input type="checkbox" data-wf="e5" /> Check 7-day action plan progress</label></li>
+          </ul>
+          <div class="wf-progress-bar"><div class="wf-progress" id="prog-evening"></div></div>
+        </div>
+        <div class="workflow-block night-block">
+          <div class="wf-block-icon"><i class="fa fa-star"></i></div>
+          <div class="wf-block-time">9:00 PM – 11:00 PM</div>
+          <h3>Night Session</h3>
+          <h4>KPI Update &amp; Planning</h4>
+          <ul class="wf-checklist" id="wf-night-list">
+            <li><label><input type="checkbox" data-wf="n1" /> Update daily KPI dashboard</label></li>
+            <li><label><input type="checkbox" data-wf="n2" /> Submit daily activity report</label></li>
+            <li><label><input type="checkbox" data-wf="n3" /> Review goal vs achievement</label></li>
+            <li><label><input type="checkbox" data-wf="n4" /> Plan tomorrow's prospect list</label></li>
+            <li><label><input type="checkbox" data-wf="n5" /> Set intentions &amp; affirmations</label></li>
+          </ul>
+          <div class="wf-progress-bar"><div class="wf-progress" id="prog-night"></div></div>
+        </div>
+      </div>
+      <div class="glass-card mt-2">
+        <div class="card-header">
+          <h3><i class="fa fa-chart-simple"></i> Today's Completion</h3>
+          <button class="btn-gold" onclick="App.workflow.resetAll()"><i class="fa fa-rotate-right"></i> Reset Day</button>
+        </div>
+        <div class="overall-progress-area">
+          <div class="overall-progress-bar"><div class="overall-progress-fill" id="overallProgress"></div></div>
+          <span id="overallPct">0% Complete</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: PROSPECTING ==================== -->
+    <section class="page" id="page-prospecting">
+      <div class="section-header">
+        <h2>Prospecting System</h2>
+        <p>Capture, categorize, and convert your leads</p>
+        <button class="btn-gold" onclick="App.prospecting.openAddModal()"><i class="fa fa-plus"></i> Add Lead</button>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="mini-stats">
+        <div class="mini-stat cold"><i class="fa fa-snowflake"></i><span id="stat-cold">0</span><label>Cold</label></div>
+        <div class="mini-stat warm"><i class="fa fa-fire-flame-simple"></i><span id="stat-warm">0</span><label>Warm</label></div>
+        <div class="mini-stat hot"><i class="fa fa-fire"></i><span id="stat-hot">0</span><label>Hot</label></div>
+        <div class="mini-stat converted"><i class="fa fa-check-circle"></i><span id="stat-converted">0</span><label>Converted</label></div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <input type="text" placeholder="Search leads..." class="search-input" id="leadSearch" oninput="App.prospecting.filterLeads()" />
+        <select id="leadCatFilter" title="Filter leads by category" aria-label="Filter leads by category" onchange="App.prospecting.filterLeads()">
+          <option value="">All Categories</option>
+          <option value="Cold">Cold</option>
+          <option value="Warm">Warm</option>
+          <option value="Hot">Hot</option>
+          <option value="Converted">Converted</option>
+        </select>
+        <select id="leadSourceFilter" title="Filter leads by source" aria-label="Filter leads by source" onchange="App.prospecting.filterLeads()">
+          <option value="">All Sources</option>
+          <option value="Facebook">Facebook</option>
+          <option value="Instagram">Instagram</option>
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Referral">Referral</option>
+          <option value="LinkedIn">LinkedIn</option>
+          <option value="TikTok">TikTok</option>
+          <option value="Walk-in">Walk-in</option>
+          <option value="Other">Other</option>
+        </select>
+        <button class="btn-outline" onclick="App.prospecting.exportLeads()"><i class="fa fa-download"></i> Export</button>
+      </div>
+
+      <!-- Kanban Board -->
+      <div class="kanban-board" id="leadKanban">
+        <div class="kanban-col" id="kanban-Cold">
+          <div class="kanban-col-header cold-header"><i class="fa fa-snowflake"></i> Cold Leads <span class="col-count" id="cnt-cold">0</span></div>
+          <div class="kanban-items" id="kanban-items-Cold"></div>
+          <button class="kanban-add-btn" onclick="App.prospecting.openAddModal('Cold')"><i class="fa fa-plus"></i> Add Cold Lead</button>
+        </div>
+        <div class="kanban-col" id="kanban-Warm">
+          <div class="kanban-col-header warm-header"><i class="fa fa-fire-flame-simple"></i> Warm Leads <span class="col-count" id="cnt-warm">0</span></div>
+          <div class="kanban-items" id="kanban-items-Warm"></div>
+          <button class="kanban-add-btn" onclick="App.prospecting.openAddModal('Warm')"><i class="fa fa-plus"></i> Add Warm Lead</button>
+        </div>
+        <div class="kanban-col" id="kanban-Hot">
+          <div class="kanban-col-header hot-header"><i class="fa fa-fire"></i> Hot Leads <span class="col-count" id="cnt-hot">0</span></div>
+          <div class="kanban-items" id="kanban-items-Hot"></div>
+          <button class="kanban-add-btn" onclick="App.prospecting.openAddModal('Hot')"><i class="fa fa-plus"></i> Add Hot Lead</button>
+        </div>
+        <div class="kanban-col" id="kanban-Converted">
+          <div class="kanban-col-header converted-header"><i class="fa fa-check-circle"></i> Converted <span class="col-count" id="cnt-converted">0</span></div>
+          <div class="kanban-items" id="kanban-items-Converted"></div>
+        </div>
+      </div>
+
+      <!-- All Leads Table -->
+      <div class="glass-card mt-2">
+        <div class="card-header">
+          <h3><i class="fa fa-table"></i> All Leads Registry</h3>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="leadsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Source</th>
+                <th>Category</th>
+                <th>Date Added</th>
+                <th>Follow-Up</th>
+                <th>Notes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody">
+              <tr><td colspan="9" class="empty-row"><i class="fa fa-inbox"></i> No leads yet. Click "Add Lead" to start.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: APPOINTMENTS ==================== -->
+    <section class="page" id="page-appointments">
+      <div class="section-header">
+        <h2>Appointment Setting System</h2>
+        <p>Schedule, track, and manage all your appointments</p>
+        <button class="btn-gold" onclick="App.appointments.openAddModal()"><i class="fa fa-plus"></i> Book Appointment</button>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat blue"><i class="fa fa-calendar-plus"></i><span id="apt-booked">0</span><label>Booked</label></div>
+        <div class="mini-stat green"><i class="fa fa-circle-check"></i><span id="apt-confirmed">0</span><label>Confirmed</label></div>
+        <div class="mini-stat gold2"><i class="fa fa-user-check"></i><span id="apt-attended">0</span><label>Attended</label></div>
+        <div class="mini-stat orange"><i class="fa fa-calendar-xmark"></i><span id="apt-rescheduled">0</span><label>Rescheduled</label></div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="glass-card col-span-2">
+          <div class="card-header">
+            <h3><i class="fa fa-calendar-alt"></i> Upcoming Appointments</h3>
+            <select id="apptStatusFilter" title="Filter appointments by status" aria-label="Filter appointments by status" onchange="App.appointments.filterAppts()">
+              <option value="">All Status</option>
+              <option value="Booked">Booked</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Attended">Attended</option>
+              <option value="Rescheduled">Rescheduled</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table" id="apptsTable">
+              <thead>
+                <tr><th>#</th><th>Lead Name</th><th>Date & Time</th><th>Platform</th><th>Status</th><th>Reminder</th><th>Notes</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="apptsTableBody">
+                <tr><td colspan="8" class="empty-row"><i class="fa fa-calendar"></i> No appointments scheduled yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-chart-bar"></i> Appointment Stats</h3></div>
+          <canvas id="apptChart" height="250"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: PRESENTATIONS ==================== -->
+    <section class="page" id="page-presentations">
+      <div class="section-header">
+        <h2>Presentation Management</h2>
+        <p>Track presentations, attendance, and objections</p>
+        <button class="btn-gold" onclick="App.presentations.openAddModal()"><i class="fa fa-plus"></i> Log Presentation</button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="glass-card col-span-2">
+          <div class="card-header"><h3><i class="fa fa-presentation-screen"></i> Presentation Sessions</h3></div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Session Title</th><th>Date</th><th>Attendees</th><th>Interest Rating</th><th>Sign-Ups</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="presentationsBody">
+                <tr><td colspan="8" class="empty-row"><i class="fa fa-presentation-screen"></i> No presentations logged yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-comment-dots"></i> Objection Tracker</h3>
+            <button class="btn-gold-sm" onclick="App.presentations.addObjection()"><i class="fa fa-plus"></i> Log</button>
+          </div>
+          <div id="objectionLog" class="objection-list">
+            <div class="empty-state"><i class="fa fa-comment"></i><p>No objections logged yet</p></div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-chart-line"></i> Interest Rating Trend</h3></div>
+          <canvas id="interestChart" height="220"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: CLOSING & SIGN-UP ==================== -->
+    <section class="page" id="page-closing">
+      <div class="section-header">
+        <h2>Closing &amp; Sign-Up System</h2>
+        <p>Register new members and track payments</p>
+        <button class="btn-gold" onclick="App.closing.openAddModal()"><i class="fa fa-user-plus"></i> New Sign-Up</button>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat green"><i class="fa fa-file-signature"></i><span id="cls-total">0</span><label>Total Sign-Ups</label></div>
+        <div class="mini-stat gold2"><i class="fa fa-money-bill-wave"></i><span id="cls-paid">0</span><label>Payment Confirmed</label></div>
+        <div class="mini-stat orange"><i class="fa fa-clock"></i><span id="cls-pending">0</span><label>Payment Pending</label></div>
+        <div class="mini-stat teal"><i class="fa fa-check-double"></i><span id="cls-onboarded">0</span><label>Fully Onboarded</label></div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="glass-card col-span-2">
+          <div class="card-header"><h3><i class="fa fa-clipboard-list"></i> Sign-Up Registry</h3></div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Full Name</th><th>Contact</th><th>Sponsor</th><th>Date</th><th>Payment</th><th>Package</th><th>Onboarding</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="closingBody">
+                <tr><td colspan="9" class="empty-row"><i class="fa fa-user-plus"></i> No sign-ups yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-list-check"></i> Onboarding Checklist</h3></div>
+          <div class="onboarding-checklist">
+            <label class="check-item"><input type="checkbox" /> Digital registration form sent</label>
+            <label class="check-item"><input type="checkbox" /> Payment confirmation received</label>
+            <label class="check-item"><input type="checkbox" /> Welcome message sent</label>
+            <label class="check-item"><input type="checkbox" /> Added to WhatsApp group</label>
+            <label class="check-item"><input type="checkbox" /> Starter pack distributed</label>
+            <label class="check-item"><input type="checkbox" /> Orientation call scheduled</label>
+            <label class="check-item"><input type="checkbox" /> System access granted</label>
+            <label class="check-item"><input type="checkbox" /> 7-day plan shared</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: FOLLOW-UP ==================== -->
+    <section class="page" id="page-followup">
+      <div class="section-header">
+        <h2>Follow-Up System</h2>
+        <p>48-hour rule tracking, nurturing, and conversion dashboard</p>
+        <button class="btn-gold" onclick="App.followup.openAddModal()"><i class="fa fa-plus"></i> Add Follow-Up</button>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat urgent"><i class="fa fa-exclamation-triangle"></i><span id="fu-overdue">0</span><label>Overdue</label></div>
+        <div class="mini-stat orange"><i class="fa fa-clock"></i><span id="fu-due-today">0</span><label>Due Today</label></div>
+        <div class="mini-stat blue"><i class="fa fa-calendar"></i><span id="fu-upcoming">0</span><label>Upcoming</label></div>
+        <div class="mini-stat green"><i class="fa fa-check"></i><span id="fu-completed">0</span><label>Completed</label></div>
+      </div>
+
+      <div class="glass-card">
+        <div class="card-header">
+          <h3><i class="fa fa-rotate"></i> Follow-Up Task Board</h3>
+          <div class="card-actions">
+            <select id="fuFilter" title="Filter follow-ups" aria-label="Filter follow-ups" onchange="App.followup.filter()">
+              <option value="">All</option>
+              <option value="overdue">Overdue</option>
+              <option value="today">Due Today</option>
+              <option value="upcoming">Upcoming</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr><th>#</th><th>Lead Name</th><th>Last Contact</th><th>Due Date</th><th>48hr Timer</th><th>Method</th><th>Status</th><th>Notes</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="followupBody">
+              <tr><td colspan="9" class="empty-row"><i class="fa fa-rotate"></i> No follow-ups logged yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="glass-card mt-2">
+        <div class="card-header"><h3><i class="fa fa-envelope-open-text"></i> Nurturing Message Templates</h3></div>
+        <div class="template-grid">
+          <div class="template-card">
+            <h4><i class="fa fa-fire-flame-simple"></i> Warm Lead Check-In</h4>
+            <p>"Hi [Name]! Just checking in — have you had a chance to review the info I shared? I'd love to answer any questions you might have. 😊"</p>
+            <button class="btn-copy" onclick="App.utils.copyText(this)">Copy</button>
+          </div>
+          <div class="template-card">
+            <h4><i class="fa fa-fire"></i> Hot Lead Urgency</h4>
+            <p>"Hi [Name], I'm excited about the opportunity we discussed! Spots are limited this week. Can we finalize your enrollment today? 🚀"</p>
+            <button class="btn-copy" onclick="App.utils.copyText(this)">Copy</button>
+          </div>
+          <div class="template-card">
+            <h4><i class="fa fa-heart"></i> Value-Add Message</h4>
+            <p>"Hi [Name]! I wanted to share a success story from our team — [member] just achieved [milestone]. Imagine where you could be in 90 days! 💪"</p>
+            <button class="btn-copy" onclick="App.utils.copyText(this)">Copy</button>
+          </div>
+          <div class="template-card">
+            <h4><i class="fa fa-handshake"></i> Post-Presentation</h4>
+            <p>"Hi [Name], it was great connecting during our presentation! Based on your goals, I truly believe this is the right fit. Want to take the next step? 🌟"</p>
+            <button class="btn-copy" onclick="App.utils.copyText(this)">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: ONBOARDING ==================== -->
+    <section class="page" id="page-onboarding">
+      <div class="section-header">
+        <h2>Onboarding System</h2>
+        <p>New member orientation, starter guides, and 7-day plans</p>
+        <button class="btn-gold" onclick="App.onboarding.openAddModal()"><i class="fa fa-plus"></i> Start Onboarding</button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="glass-card col-span-2">
+          <div class="card-header"><h3><i class="fa fa-user-graduate"></i> Onboarding Pipeline</h3></div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr><th>#</th><th>Member Name</th><th>Start Date</th><th>Sponsor</th><th>Orientation</th><th>Starter Guide</th><th>Account Setup</th><th>Day 7 Plan</th><th>Progress</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="onboardingBody">
+                <tr><td colspan="10" class="empty-row"><i class="fa fa-user-graduate"></i> No members in onboarding.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-calendar-week"></i> 7-Day Action Plan</h3></div>
+          <div class="seven-day-plan">
+            <div class="day-card" data-day="1"><span class="day-num">Day 1</span><p>Account setup + system orientation + welcome call</p></div>
+            <div class="day-card" data-day="2"><span class="day-num">Day 2</span><p>Create/update social media profiles + add contacts</p></div>
+            <div class="day-card" data-day="3"><span class="day-num">Day 3</span><p>Learn products + presentation basics with mentor</p></div>
+            <div class="day-card" data-day="4"><span class="day-num">Day 4</span><p>Make list of 20 warm contacts + outreach begins</p></div>
+            <div class="day-card" data-day="5"><span class="day-num">Day 5</span><p>Book first 3 appointments + presentation rehearsal</p></div>
+            <div class="day-card" data-day="6"><span class="day-num">Day 6</span><p>First presentations + objection handling practice</p></div>
+            <div class="day-card" data-day="7"><span class="day-num">Day 7</span><p>Review &amp; assess progress + plan next 30 days</p></div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-book-open"></i> Starter Guide Tracker</h3></div>
+          <div class="guide-list">
+            <div class="guide-item"><i class="fa fa-file-pdf gold-icon"></i><span>D'Influencers Welcome Pack</span><button class="btn-sm">Mark Sent</button></div>
+            <div class="guide-item"><i class="fa fa-file-pdf gold-icon"></i><span>Product/Service Overview</span><button class="btn-sm">Mark Sent</button></div>
+            <div class="guide-item"><i class="fa fa-file-pdf gold-icon"></i><span>Compensation Plan</span><button class="btn-sm">Mark Sent</button></div>
+            <div class="guide-item"><i class="fa fa-file-pdf gold-icon"></i><span>Social Media Branding Guide</span><button class="btn-sm">Mark Sent</button></div>
+            <div class="guide-item"><i class="fa fa-file-pdf gold-icon"></i><span>Prospecting Scripts</span><button class="btn-sm">Mark Sent</button></div>
+            <div class="guide-item"><i class="fa fa-file-pdf gold-icon"></i><span>Operating System Manual</span><button class="btn-sm">Mark Sent</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: TEAM ==================== -->
+    <section class="page" id="page-team">
+      <div class="section-header">
+        <h2>Team Members</h2>
+        <p>Manage and monitor your entire downline network</p>
+        <button class="btn-gold" onclick="App.team.openAddModal()"><i class="fa fa-user-plus"></i> Add Member</button>
+      </div>
+
+      <div class="mini-stats">
+        <div class="mini-stat gold2"><i class="fa fa-crown"></i><span id="tm-leaders">0</span><label>Leaders</label></div>
+        <div class="mini-stat blue"><i class="fa fa-user-tie"></i><span id="tm-active">0</span><label>Active</label></div>
+        <div class="mini-stat green"><i class="fa fa-seedling"></i><span id="tm-new">0</span><label>New (30d)</label></div>
+        <div class="mini-stat orange"><i class="fa fa-user-clock"></i><span id="tm-inactive">0</span><label>Inactive</label></div>
+      </div>
+
+      <div class="glass-card">
+        <div class="card-header">
+          <h3><i class="fa fa-people-group"></i> Team Registry</h3>
+          <div class="card-actions">
+            <input type="text" placeholder="Search members..." class="search-input-sm" id="teamSearch" oninput="App.team.filter()" />
+            <select id="teamLevelFilter" title="Filter team by level" aria-label="Filter team by level" onchange="App.team.filter()">
+              <option value="">All Levels</option>
+              <option value="Leader">Leader</option>
+              <option value="Senior">Senior</option>
+              <option value="Consultant">Consultant</option>
+              <option value="Starter">Starter</option>
+            </select>
+          </div>
+        </div>
+        <div class="team-grid" id="teamGrid">
+          <div class="empty-state"><i class="fa fa-people-group"></i><p>No team members added yet. Click "Add Member" to start.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: KPI ==================== -->
+    <section class="page" id="page-kpi">
+      <div class="section-header">
+        <h2>KPI &amp; Performance Indicators</h2>
+        <p>Your complete performance analytics dashboard</p>
+        <button class="btn-gold" onclick="App.kpi.logDaily()"><i class="fa fa-plus"></i> Log Today's KPIs</button>
+      </div>
+
+      <div class="cards-grid">
+        <div class="kpi-card gold"><div class="kpi-icon"><i class="fa fa-phone"></i></div><div class="kpi-info"><span class="kpi-label">Daily Contacts</span><span class="kpi-value" id="k-contacts">0</span><span class="kpi-delta"><i class="fa fa-target"></i> Target: 20/day</span></div></div>
+        <div class="kpi-card blue"><div class="kpi-icon"><i class="fa fa-calendar-check"></i></div><div class="kpi-info"><span class="kpi-label">Appts Booked</span><span class="kpi-value" id="k-appts-booked">0</span><span class="kpi-delta"><i class="fa fa-target"></i> Target: 5/day</span></div></div>
+        <div class="kpi-card green"><div class="kpi-icon"><i class="fa fa-presentation-screen"></i></div><div class="kpi-info"><span class="kpi-label">Presentations</span><span class="kpi-value" id="k-presentations">0</span><span class="kpi-delta"><i class="fa fa-target"></i> Target: 3/day</span></div></div>
+        <div class="kpi-card purple"><div class="kpi-icon"><i class="fa fa-percent"></i></div><div class="kpi-info"><span class="kpi-label">Conversion Rate</span><span class="kpi-value" id="k-conv-rate">0%</span><span class="kpi-delta"><i class="fa fa-target"></i> Target: 20%</span></div></div>
+        <div class="kpi-card orange"><div class="kpi-icon"><i class="fa fa-user-plus"></i></div><div class="kpi-info"><span class="kpi-label">New Sign-Ups</span><span class="kpi-value" id="k-signups">0</span><span class="kpi-delta"><i class="fa fa-target"></i> Target: 2/week</span></div></div>
+        <div class="kpi-card teal"><div class="kpi-icon"><i class="fa fa-sitemap"></i></div><div class="kpi-info"><span class="kpi-label">Duplication Rate</span><span class="kpi-value" id="k-dup-rate">0%</span><span class="kpi-delta"><i class="fa fa-target"></i> Target: 50%</span></div></div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="glass-card col-span-2">
+          <div class="card-header">
+            <h3><i class="fa fa-chart-line"></i> 30-Day Performance Trend</h3>
+            <div class="card-actions">
+              <button class="chip active" onclick="App.charts.switchKPI('contacts')">Contacts</button>
+              <button class="chip" onclick="App.charts.switchKPI('appointments')">Appts</button>
+              <button class="chip" onclick="App.charts.switchKPI('signups')">Sign-Ups</button>
+            </div>
+          </div>
+          <canvas id="kpiTrendChart" height="200"></canvas>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-money-bill-trend-up"></i> Monthly Income</h3></div>
+          <canvas id="incomeChart" height="250"></canvas>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-table-list"></i> Daily KPI Log</h3></div>
+          <div class="table-responsive">
+            <table class="data-table data-table-sm">
+              <thead><tr><th>Date</th><th>Contacts</th><th>Appts</th><th>Pres.</th><th>Sign-Ups</th><th>Note</th></tr></thead>
+              <tbody id="kpiLogBody"><tr><td colspan="6" class="empty-row">No KPI entries yet.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: ACCOUNTABILITY ==================== -->
+    <section class="page" id="page-accountability">
+      <div class="section-header">
+        <h2>Accountability System</h2>
+        <p>Daily reporting, leaderboards, and goal tracking</p>
+        <button class="btn-gold" onclick="App.accountability.openReportModal()"><i class="fa fa-file-pen"></i> Daily Report</button>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="glass-card col-span-2">
+          <div class="card-header">
+            <h3><i class="fa fa-bullseye"></i> Goal vs Achievement</h3>
+          </div>
+          <div class="goal-tracker">
+            <div class="goal-item">
+              <div class="goal-label"><span>Monthly Sign-Ups</span><span id="goal-signups-val">0 / 0</span></div>
+              <div class="goal-bar-bg"><div class="goal-bar-fill gold-fill w-0" id="goal-signups-bar"></div></div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label"><span>Monthly Contacts</span><span id="goal-contacts-val">0 / 0</span></div>
+              <div class="goal-bar-bg"><div class="goal-bar-fill blue-fill w-0" id="goal-contacts-bar"></div></div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label"><span>Monthly Appointments</span><span id="goal-appts-val">0 / 0</span></div>
+              <div class="goal-bar-bg"><div class="goal-bar-fill green-fill w-0" id="goal-appts-bar"></div></div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-label"><span>Monthly Income Target</span><span id="goal-income-val">₦0 / ₦0</span></div>
+              <div class="goal-bar-bg"><div class="goal-bar-fill purple-fill w-0" id="goal-income-bar"></div></div>
+            </div>
+          </div>
+          <button class="btn-outline mt-1" onclick="App.accountability.openGoalsModal()"><i class="fa fa-pencil"></i> Set Monthly Goals</button>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-trophy"></i> Team Leaderboard</h3></div>
+          <div class="leaderboard" id="leaderboardFull">
+            <div class="empty-state"><i class="fa fa-trophy"></i><p>Add team members to see rankings</p></div>
+          </div>
+        </div>
+
+        <div class="glass-card col-span-2">
+          <div class="card-header"><h3><i class="fa fa-clipboard-list"></i> Daily Activity Reports</h3></div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead><tr><th>Date</th><th>Member</th><th>Contacts</th><th>Appts</th><th>Presentations</th><th>Sign-Ups</th><th>Notes</th></tr></thead>
+              <tbody id="activityReportBody"><tr><td colspan="7" class="empty-row">No activity reports submitted yet.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-users-gear"></i> Mentorship Progress</h3></div>
+          <div class="mentorship-list" id="mentorshipList">
+            <div class="empty-state"><i class="fa fa-user-graduate"></i><p>No mentorship pairings yet</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: TOOLS ==================== -->
+    <section class="page" id="page-tools">
+      <div class="section-header">
+        <h2>Tools &amp; Resources</h2>
+        <p>Recommended technical stack for D'Influencers Mentorship Hub</p>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-category-card">
+          <div class="tool-cat-header gold-bg"><i class="fa fa-database"></i> CRM &amp; Data</div>
+          <div class="tool-list">
+            <div class="tool-item"><img src="https://www.hubspot.com/favicon.ico" onerror="this.src=''" alt="" class="tool-icon-img" /><div><strong>HubSpot</strong><p>Full CRM, pipeline, emails</p></div><a href="https://hubspot.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><img src="https://www.notion.so/favicon.ico" onerror="this.src=''" alt="" class="tool-icon-img" /><div><strong>Notion</strong><p>Team wiki &amp; documentation</p></div><a href="https://notion.so" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-airtable"><i class="fa fa-table"></i></div><div><strong>Airtable</strong><p>Flexible database &amp; tracking</p></div><a href="https://airtable.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-gsheets"><i class="fab fa-google"></i></div><div><strong>Google Sheets</strong><p>Data tracking &amp; reports</p></div><a href="https://sheets.google.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+          </div>
+        </div>
+
+        <div class="tool-category-card">
+          <div class="tool-cat-header blue-bg"><i class="fa fa-comments"></i> Communication</div>
+          <div class="tool-list">
+            <div class="tool-item"><div class="tool-icon-svg bg-whatsapp"><i class="fab fa-whatsapp"></i></div><div><strong>WhatsApp Business</strong><p>Team &amp; client messaging</p></div><a href="https://business.whatsapp.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-telegram"><i class="fab fa-telegram"></i></div><div><strong>Telegram</strong><p>Group broadcasts &amp; bots</p></div><a href="https://telegram.org" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-instagram"><i class="fab fa-instagram"></i></div><div><strong>Instagram</strong><p>Brand building &amp; outreach</p></div><a href="https://instagram.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-facebook"><i class="fab fa-facebook"></i></div><div><strong>Facebook</strong><p>Groups &amp; lead generation</p></div><a href="https://facebook.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+          </div>
+        </div>
+
+        <div class="tool-category-card">
+          <div class="tool-cat-header green-bg"><i class="fa fa-calendar"></i> Scheduling</div>
+          <div class="tool-list">
+            <div class="tool-item"><div class="tool-icon-svg bg-gcal"><i class="fab fa-google"></i></div><div><strong>Google Calendar</strong><p>Appointment scheduling</p></div><a href="https://calendar.google.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-calendly"><i class="fa fa-calendar-days"></i></div><div><strong>Calendly</strong><p>Automated booking links</p></div><a href="https://calendly.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-zoom"><i class="fa fa-video"></i></div><div><strong>Zoom / Google Meet</strong><p>Virtual presentations</p></div><a href="https://zoom.us" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+          </div>
+        </div>
+
+        <div class="tool-category-card">
+          <div class="tool-cat-header purple-bg"><i class="fa fa-bolt"></i> Automation</div>
+          <div class="tool-list">
+            <div class="tool-item"><div class="tool-icon-svg bg-zapier"><i class="fa fa-bolt"></i></div><div><strong>Zapier</strong><p>Workflow automation</p></div><a href="https://zapier.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-make"><i class="fa fa-gears"></i></div><div><strong>Make (Integromat)</strong><p>Advanced automations</p></div><a href="https://make.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+            <div class="tool-item"><div class="tool-icon-svg bg-gdrive"><i class="fab fa-google"></i></div><div><strong>Google Drive</strong><p>Content &amp; media storage</p></div><a href="https://drive.google.com" target="_blank" rel="noopener" class="btn-sm">Open</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PAGE: SETTINGS ==================== -->
+    <section class="page" id="page-settings">
+      <div class="section-header">
+        <h2>System Settings</h2>
+        <p>Configure your D'Influencers Operating System</p>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-building"></i> Organization Info</h3></div>
+          <div class="settings-form">
+            <div class="form-group">
+              <label for="st-orgName">Organization Name</label>
+              <input type="text" id="st-orgName" value="D'Influencers Mentorship Hub" title="Organization name" />
+            </div>
+            <div class="form-group">
+              <label for="st-adminName">Admin Name</label>
+              <input type="text" id="st-adminName" placeholder="Your Name" />
+            </div>
+            <div class="form-group">
+              <label for="st-adminContact">Admin Contact</label>
+              <input type="text" id="st-adminContact" placeholder="+234..." />
+            </div>
+            <div class="form-group">
+              <label for="st-currency">Country / Currency</label>
+              <select id="st-currency" title="Select currency" aria-label="Select currency">
+                <option value="₦">Nigeria (₦)</option>
+                <option value="$">United States ($)</option>
+                <option value="GH₵">Ghana (GH₵)</option>
+                <option value="KSh">Kenya (KSh)</option>
+                <option value="R">South Africa (R)</option>
+              </select>
+            </div>
+            <button class="btn-gold" onclick="App.settings.save()"><i class="fa fa-save"></i> Save Settings</button>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-target"></i> Default Daily Targets</h3></div>
+          <div class="settings-form">
+            <div class="form-group">
+              <label for="st-targetContacts">Daily Contacts Target</label>
+              <input type="number" id="st-targetContacts" value="20" min="1" title="Daily contacts target" />
+            </div>
+            <div class="form-group">
+              <label for="st-targetAppts">Daily Appointments Target</label>
+              <input type="number" id="st-targetAppts" value="5" min="1" title="Daily appointments target" />
+            </div>
+            <div class="form-group">
+              <label for="st-targetPres">Daily Presentations Target</label>
+              <input type="number" id="st-targetPres" value="3" min="1" title="Daily presentations target" />
+            </div>
+            <div class="form-group">
+              <label for="st-targetSignups">Weekly Sign-Ups Target</label>
+              <input type="number" id="st-targetSignups" value="2" min="1" title="Weekly sign-ups target" />
+            </div>
+            <button class="btn-gold" onclick="App.settings.saveTargets()"><i class="fa fa-save"></i> Save Targets</button>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-database"></i> Data Management</h3></div>
+          <div class="settings-form">
+            <p class="settings-note">Export or reset your operating system data.</p>
+            <button class="btn-gold mb-1" onclick="App.utils.exportAllData()"><i class="fa fa-download"></i> Export All Data (JSON)</button>
+            <button class="btn-outline mb-1" onclick="App.utils.importData()"><i class="fa fa-upload"></i> Import Data</button>
+            <button class="btn-danger" onclick="App.utils.confirmReset()"><i class="fa fa-trash"></i> Reset All Data</button>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-header"><h3><i class="fa fa-palette"></i> About the System</h3></div>
+          <div class="about-section">
+            <img src="assets/logo.jpeg" alt="Logo" class="about-logo" />
+            <h3 class="gold-text">D'Influencers Mentorship Hub</h3>
+            <p class="tagline-text">Inspire. Empower. Elevate.</p>
+            <p>Network Marketing Technical Operating System v1.0</p>
+            <p>Built for systematic, trackable, and scalable business growth.</p>
+            <div class="about-badges">
+              <span class="badge">Prospecting</span>
+              <span class="badge">Appointments</span>
+              <span class="badge">Presentations</span>
+              <span class="badge">Closing</span>
+              <span class="badge">Follow-Up</span>
+              <span class="badge">Onboarding</span>
+              <span class="badge">KPI Tracking</span>
+              <span class="badge">Accountability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="App.ui.closeModal(event)">
+    <div class="modal" id="mainModal">
+      <button class="modal-close" onclick="App.ui.closeModal()" title="Close modal" aria-label="Close modal"><i class="fa fa-times"></i></button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

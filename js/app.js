@@ -844,26 +844,44 @@
   }
 
   function bindEvents() {
+    const sidebarEl = () => document.getElementById("sidebar");
+    const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+    const closeSidebarMobile = () => {
+      if (isMobile()) sidebarEl()?.classList.remove("open");
+    };
+
     document.querySelectorAll(".nav-item[data-page]").forEach((item) => {
       item.addEventListener("click", (e) => {
         e.preventDefault();
         navigateTo(item.dataset.page);
+        closeSidebarMobile();
       });
     });
 
     const sideToggle = document.getElementById("sidebarToggle");
     if (sideToggle) {
       sideToggle.addEventListener("click", () => {
-        document.getElementById("sidebar")?.classList.toggle("collapsed");
+        sidebarEl()?.classList.toggle("collapsed");
       });
     }
 
     const menuBtn = document.getElementById("menuBtn");
     if (menuBtn) {
-      menuBtn.addEventListener("click", () => {
-        document.getElementById("sidebar")?.classList.toggle("open");
+      menuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        sidebarEl()?.classList.toggle("open");
       });
     }
+
+    // Tap outside the sidebar (or on backdrop) to close it on mobile
+    document.addEventListener("click", (e) => {
+      if (!isMobile()) return;
+      const sb = sidebarEl();
+      if (!sb || !sb.classList.contains("open")) return;
+      if (sb.contains(e.target)) return;
+      if (e.target.closest("#menuBtn")) return;
+      sb.classList.remove("open");
+    });
 
     document.body.addEventListener("change", (e) => {
       if (e.target.matches(".wf-checklist input[type='checkbox']")) {

@@ -185,9 +185,26 @@ ul { list-style: none; }
   .sidebar {
     transform: translateX(-100%);
     width: var(--sidebar-w);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
   }
   .sidebar.open {
     transform: translateX(0);
+  }
+  /* Backdrop when sidebar is open on mobile */
+  .sidebar.open::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-w);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: -1;
+    pointer-events: none;
+  }
+  /* Collapsed state shouldn't apply on mobile — full width drawer only */
+  .sidebar.collapsed {
+    width: var(--sidebar-w);
   }
 }
 

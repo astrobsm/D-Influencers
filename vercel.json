@@ -7,7 +7,8 @@
     { "src": "sw.js", "use": "@vercel/static" },
     { "src": "css/**", "use": "@vercel/static" },
     { "src": "js/**", "use": "@vercel/static" },
-    { "src": "assets/**", "use": "@vercel/static" }
+    { "src": "assets/**", "use": "@vercel/static" },
+    { "src": "vendor/**", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/index.js" },
@@ -16,6 +17,7 @@
     { "src": "/css/(.*)", "dest": "/css/$1" },
     { "src": "/js/(.*)", "dest": "/js/$1" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/vendor/(.*)", "dest": "/vendor/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

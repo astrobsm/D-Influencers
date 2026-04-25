@@ -82,17 +82,25 @@
   };
 
   async function apiRequest(path, options = {}) {
-    const response = await fetch(`${api.base}${path}`, {
-      headers: { "Content-Type": "application/json", ...(options.headers || {}) },
-      ...options,
-    });
-    if (!response.ok) {
-      const text = await response.text();
-      throw new Error(text || `HTTP ${response.status}`);
+    const { timeout = 8000, ...rest } = options;
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), timeout);
+    try {
+      const response = await fetch(`${api.base}${path}`, {
+        headers: { "Content-Type": "application/json", ...(rest.headers || {}) },
+        signal: ctrl.signal,
+        ...rest,
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || `HTTP ${response.status}`);
+      }
+      const contentType = response.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) return response.json();
+      return null;
+    } finally {
+      clearTimeout(timer);
     }
-    const contentType = response.headers.get("content-type") || "";
-    if (contentType.includes("application/json")) return response.json();
-    return null;
   }
 
   function fromProspectRow(row) {
@@ -1243,17 +1251,21 @@
 
   const App = {
     async init() {
-      await hydrateFromBackend();
       bindEvents();
       syncProfileFromSettings();
       renderAll();
       navigateTo("dashboard");
       initPwaSupport();
-      if (api.online) {
-        showToast("Connected to live backend", "success");
-      } else {
-        showToast("Running in local mode", "warning");
-      }
+      // Hydrate from backend in the background so a slow/cold serverless
+      // function never blocks the UI from rendering.
+      hydrateFromBackend().then(() => {
+        renderAll();
+        if (api.online) {
+          showToast("Connected to live backend", "success");
+        } else {
+          showToast("Running in local mode", "warning");
+        }
+      });
     },
 
     ui: {

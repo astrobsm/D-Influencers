@@ -1195,8 +1195,26 @@
   function initPwaSupport() {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("sw.js").catch(() => {
+        navigator.serviceWorker.register("sw.js").then((reg) => {
+          // Auto-activate updated SW and reload once so users always
+          // get the latest code without manual hard-refresh.
+          reg.addEventListener("updatefound", () => {
+            const sw = reg.installing;
+            if (!sw) return;
+            sw.addEventListener("statechange", () => {
+              if (sw.state === "installed" && navigator.serviceWorker.controller) {
+                sw.postMessage({ type: "SKIP_WAITING" });
+              }
+            });
+          });
+        }).catch(() => {
           showToast("Service worker registration failed", "error");
+        });
+        let reloaded = false;
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (reloaded) return;
+          reloaded = true;
+          window.location.reload();
         });
       });
     }

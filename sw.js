@@ -3,8 +3,8 @@
    Offline-first PWA with background sync & cache strategies
    ============================================================ */
 
-const CACHE_NAME = 'dinfluencers-v6';
-const API_CACHE = 'dinfluencers-api-v6';
+const CACHE_NAME = 'dinfluencers-v7';
+const API_CACHE = 'dinfluencers-api-v7';
 const OFFLINE_URL = '/index.html';
 
 const STATIC_ASSETS = [
